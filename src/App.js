@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { LOADER_HANDLER_TYPES } from 'constants/index'
+import Loader from 'layouts/Loader/index'
+import { Suspense } from 'react'
+import { useSelector } from 'react-redux'
+import Routes from 'routes/index'
 
-function App() {
+function App () {
+  const { [LOADER_HANDLER_TYPES.page]: pageLoader } = useSelector(state => state.loader)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Suspense fallback={
+      <div className='loader-container'>
+        <Loader />
+      </div>
+     }
+    >
+      {
+        pageLoader && (
+          <div className='loader-container'>
+            <Loader />
+          </div>
+        )
+      }
+      <Routes />
+    </Suspense>
+  )
 }
 
-export default App;
+export default App

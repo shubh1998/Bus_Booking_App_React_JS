@@ -1,28 +1,79 @@
 {
-  "name": "app-frontend",
+  "name": "app_frontend",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install",
+    "lint": "standard",
+    "lint:fix": "standard --fix src/**/*.{js,jsx}"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "1.2.35",
+    "@fortawesome/free-solid-svg-icons": "5.15.3",
+    "@fortawesome/react-fontawesome": "0.1.19",
+    "@reduxjs/toolkit": "1.7.1",
+    "@testing-library/jest-dom": "5.14.1",
+    "@testing-library/react": "11.2.7",
+    "@testing-library/user-event": "12.8.3",
+    "formik": "2.2.9",
+    "lodash": "4.17.21",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-redux": "7.2.4",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "5.0.1",
+    "react-spinners": "0.13.7",
+    "react-toastify": "^9.1.1",
+    "react-use": "17.4.0",
+    "web-vitals": "1.1.2",
+    "yup": "0.32.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.17.6",
+    "@babel/core": "7.17.5",
+    "@babel/eslint-parser": "7.17.0",
+    "@babel/preset-react": "7.16.7",
+    "husky": "7.0.4",
+    "lint-staged": "12.1.2",
+    "standard": "16.0.4"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "npm run lint:fix",
+      "npm run lint"
     ]
   },
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
+  },
+  "standard": {
+    "parser": "@babel/eslint-parser",
+    "env": {
+      "jest": true,
+      "browser": true
+    },
+    "globals": [
+      "artifacts",
+      "tronWeb",
+      "contract",
+      "before",
+      "assert",
+      "after"
+    ],
+    "ignore": [
+      "build/*",
+      "src/pixi-js-scripts/*",
+      "public",
+      "node_modules"
+    ]
+  },
+  "eslintConfig": {},
   "browserslist": {
     "production": [
       ">0.2%",
